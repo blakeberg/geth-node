@@ -21,7 +21,7 @@ Pull from dockerhub:
     
     docker pull blakeberg/geth-node
 
-or copy the sources to your docker host.
+or copy the sources to your docker host and build on your own.
 
 ### Build
 
@@ -52,7 +52,7 @@ Decentralized platform that runs smart contracts or especially applications that
 
 You can also start the client from docker host via
 
-	docker exec --user -d geth nohup geth --testnet --rpc --rpcaddr "0.0.0.0" & 
+	docker exec --user geth -d geth nohup geth --testnet --rpc --rpcaddr "0.0.0.0" & 
 
 and use the JSON RPC API with localhost
 
