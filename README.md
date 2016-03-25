@@ -19,17 +19,17 @@ Image size: 355,2 MByte
 
 Pull from dockerhub:
     
-    docker pull blakeberg/ssh:geth-node
+    docker pull blakeberg/geth-node
 
 or copy the sources to your docker host.
 
 ### Build
 
-	docker build --force-rm -t blakeberg/ssh:geth-node .
+	docker build --force-rm -t blakeberg/geth-node .
 
 ### Run
 
-	docker run -d --name geth -p 20022:22 -p 28545:8545 blakeberg/ssh:geth-node
+	docker run -d -h geth --name geth -p 20022:22 -p 8545:8545 blakeberg/geth-node
 
 ### Connect
 Connect with ssh use the port that was just located:
