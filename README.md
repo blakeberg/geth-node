@@ -50,7 +50,7 @@ Decentralized platform that runs smart contracts or especially applications that
 3. tail logfile: `tail -f nohup.out`
 3. Try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://localhost:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.5/linux/go1.5.1"}`
 
-# Useful Links
+## Useful Links
 * Ethereum Homepage <http://ethereum.org> 
 * Ethereum Main Wiki <https://github.com/ethereum/wiki>
 * Ethereum testnet morden <https://github.com/ethereum/wiki/wiki/Morden>
