@@ -44,23 +44,26 @@ Connect with ssh use the port that was just located:
 Decentralized platform that runs smart contracts or especially applications that run exactly as coded without downtime, censorship, fraud or third party smog. **Applications so called Dapps** need just an Ethereum client node which is connected in Etherezm networks and syncs the Blockchain - the decentralized public ledger and global world computer.
 
 ### Start Client
+The Ethereum node can be started inside the container within a ssh session or outside from host via docker exec command.
+#### from inside
 
 1. connect with ssh
 2. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "0.0.0.0" &`
 3. tail logfile: `tail -f nohup.out`
-3. Try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.5/linux/go1.5.1"}`
+3. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.5/linux/go1.5.1"}`
+4. try JavaScript Console type `geth attach` and then `admin.nodeInfo` to get similiar info to request with curl before
 
-You can also start the client from docker host via
+#### from outside
 
-	docker exec --user geth -d geth nohup geth --testnet --rpc --rpcaddr "0.0.0.0" & 
-
-and use the JSON RPC API with localhost
-
-	curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://localhost:8545 
+1. start client: `docker exec --user geth -d geth nohup geth --testnet --rpc --rpcaddr "0.0.0.0" & `
+2. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://localhost:8545`
+3. try JavaScript Console type `docker exec -i --user geth geth geth attach` to open interactively
+4. type `admin.nodeInfo` into console to get similiar info to request with curl before
 
 ## Useful Links
 * Ethereum Homepage <http://ethereum.org> 
-* Ethereum Main Wiki <https://github.com/ethereum/wiki>
-* Ethereum testnet morden <https://github.com/ethereum/wiki/wiki/Morden>
-* Ethereum JavaScript web3 API <https://github.com/ethereum/web3.js/tree/master> and <https://github.com/ethereum/wiki/wiki/JavaScript-API>
-* Ethereum JSON RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>
+* Main Wiki <https://github.com/ethereum/wiki>
+* testnet morden <https://github.com/ethereum/wiki/wiki/Morden>
+* JSON RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>
+* JavaScript Console and Management API <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console>
+* JavaScript web3 API <https://github.com/ethereum/web3.js/tree/master> and <https://github.com/ethereum/wiki/wiki/JavaScript-API>
