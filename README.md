@@ -4,7 +4,7 @@ Based on Official Ubuntu base image (trusty) from **ubuntu:14.04.4**
 
 This Dockerfile stands for a **full ethereum node** where you can connect via **JSON RPC API** and the JavaScript Runtime Environment **JSRE** with interactive Console and Script Mode. Besides this **Solidity** as Contract Compiler is already installed.
 
-> The full Ethereum Blockchain needs actually about 500 MByte in testnet. 
+> The full Ethereum Blockchain needs actually about 2,6GB in testnet and for mining 1,2GB for each Ethash epoche.
 
 Image size: 418,6 MByte
 
@@ -48,6 +48,11 @@ Decentralized platform that runs smart contracts or especially applications that
 
 ### Start Client
 The Ethereum node can be started inside the container within a ssh session or outside from host via docker exec command.
+
+>It will need a long time (3+ hours) to sync all blocks from testnet about 2,6GB for full blockchain `~/.ethereum/testnet/chaindata`. You can see the state via JavaScript console type `eth.syncing` 
+
+*Instead of `geth` ... and `geth attach` you can run `get console` to get both logging and interactive JavaScript console.*
+
 #### from inside
 
 1. connect with ssh
@@ -79,20 +84,25 @@ If your client running attach to JavaScript console and you will get an informat
 * for web3 JavaScript Dapp API type `web3` as it contains the modules `net`, `eth`, `db` and `shh`
 
 ### Mining
-Mining Ether = Securing the network = verify computation while Ether is the currency. You will get 5 Ether for a successful mined block with a much lower difficulty in testnet morden. You will need Ether to deploy contracts, interact with it and able to make transactions. At least one Ether is more than enough cause Gas cost for (contract) computation takes about 20 Gwei (1 Ether = 1000000000 Gwei).
+Mining Ether = Securing the network = verify computation while Ether is the currency. You will get 5 Ether for a successful mined block with a much lower difficulty in testnet morden. You will need Ether to deploy contracts, interact with it and able to make transactions. At least one Ether is more than enough cause Gas price for (contract) computation takes about 20 Gwei (1 Ether = 1000000000 Gwei).
 
 > If you have already an account with ether you can send ether to newly created account at step 2 and skip the other steps go directly to contracts.
+
+**Before you start mining you should have been synced the full blockchain.**
 
 1. if your client running attach to JavaScript console
 2. create an account: `personal.newAccount("newpass")` 
 *(take this adress as 0x0...)*
 3. set account for mining: `miner.setEtherbase("0x0...")`
-4. start mining: `miner.start()`
-5. see hashrate: `miner.hashrate`
-6. see balance: `web3.eth.getBalance("0x0...")`
-7. stop mining: `miner.stop()` *(if you have balance > 0)*
+4. see syncing: `eth.syncing` *(you should have `currentBlock=highestBlock` before mining)*
+5. start mining: `miner.start()`
+6. see hashrate: `miner.hashrate`
+7. see balance: `web3.eth.getBalance("0x0...")`
+8. stop mining: `miner.stop()` *(if you have balance > 0)*
 
-It will take some time to generate about 1,2GB Ethash `~/.ethash` and 500MB for full blockchain `~/.ethereum/testnet/chaindata`. If your mining has begun you can see this with a `hashrate > 0` from JavaScript console via `miner.hashrate`.
+**Mining will take 100% cpu.**
+
+It will take some time (15+ minutes) to generate about 1,2GB Ethash `~/.ethash`. If your mining has begun you can see this with a `hashrate > 0` from JavaScript console via `miner.hashrate`.
 
 >Don't loose your private keys `~/.ethereum/testnet/keystore` cause you won't have access to your account and ether without them.
 
