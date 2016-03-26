@@ -2,7 +2,7 @@
 
 Based on Official Ubuntu base image (trusty) from **ubuntu:14.04.4**
 
-This Dockerfile stands for a **full ethereum node** where you can connect via **JSON RPC API**. The running container automatically starts the ethereum node without account connected to the **ethereum testnet** morden with permanently syncing.
+This Dockerfile stands for a **full ethereum node** where you can connect via **JSON RPC API** and the JavaScript Runtime Environment **JSRE** with its integrated **Management and JS web3 API** with interactive Console and Script Mode. 
 
 > The full Ethereum Blockchain needs actually about 500 MByte in testnet. 
 
