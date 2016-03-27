@@ -13,6 +13,7 @@ RUN apt-get install -y geth solc
 
 RUN useradd -m geth 
 RUN echo geth:$SSH_USERPASS | chpasswd
+ADD contracts/* /home/geth/
 
 RUN mkdir /var/run/sshd
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd

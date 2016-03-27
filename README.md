@@ -100,7 +100,7 @@ Mining Ether = Securing the network = verify computation while Ether is the curr
 7. see balance: `web3.eth.getBalance("0x0...")`
 8. stop mining: `miner.stop()` *(if you have balance > 0)*
 
-**Mining will take 100% cpu.**
+**Mining will take 100% cpu and take some while depending on your cpu sha-3 hash performance.**
 
 It will take some time (15+ minutes) to generate about 1,2GB Ethash `~/.ethash`. If your mining has begun you can see this with a `hashrate > 0` from JavaScript console via `miner.hashrate`.
 
@@ -109,18 +109,48 @@ It will take some time (15+ minutes) to generate about 1,2GB Ethash `~/.ethash`.
 ### Contracts with Solidity
 Solidity is a high-level language whose syntax is similar to that of JavaScript and it is designed to compile to code for the Ethereum Virtual Machine. This is a quick guide to use solidity and compile a sample contract. 
 
+You can find the solidity file for "Greeter" - a hello world contract under `~/greeter.sol`.
+
+#### with solc
 1. connect with ssh
-2. show help: `solc help`
-3. connect to JavaScript console: `geth attach`
-4. type `admin.setSolc('/usr/bin/solc')` 
-5. type `eth.getCompilers()` and you will get a JSON Response `["Solidity"]`
+2. show help: `solc --help`
+3. try some options p.e. 
+	* estimate gas `solc --gas greeter.sol`
+	* see user doc `solc --userdoc greeter.sol`
+	* see developer doc `solc --devdoc greeter.sol`
+4. compile: `solc --optimize --bin --bin-runtime greeter.sol`
+5. get ABI (application binary interface) with `solc --abi greeter.sol` 
+*(you will need the JSON from greeter ABI)*
+
+#### with JS console
+1. connect with ssh
+2. connect to JavaScript console: `geth attach`
+3. type `admin.setSolc('/usr/bin/solc')` 
+4. type `eth.getCompilers()` and you will get a JSON Response `["Solidity"]`
+
+##### existing contract
+1. set abi to variable `var abi = <see ABI above>;`
+2. load contract with `var greeter = eth.contract(abi).at("0x0608616212f0356c3d4c7c7b1c317151646164e1");`
+3. type `greeter` for basic informations
+4. run contract with `greeter.greet();`
+
+##### your own contract
+1. create contract account from javascript `loadScript('/home/geth/greeter.js');`
+2. you have to unlook your account with your passphrase
+3. you will get a transaction with the contract creation
+4. if transaction is mined you get the contract address
+5. type `greeter2` for basic informations
+6. run contract with `greeter2.greet();
+7. you can kill your contract with `greeter.kill.sendTransaction({from:eth.accounts[0]})`
+8. type `eth.getCode(greeter2.address)` *(you get 0 if the transaction for kill finished)*
 
 ## Useful Links
 * Ethereum Homepage <http://ethereum.org> 
 * Main Wiki <https://github.com/ethereum/wiki>
 * testnet morden <https://github.com/ethereum/wiki/wiki/Morden>
+* geth Command Line <https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options>
 * JSON RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>
 * JavaScript Runtime Environment and Management APIs <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console>
 * Web3 JavaScript Dapp API <https://github.com/ethereum/wiki/wiki/JavaScript-API>
 * Solidity <https://solidity.readthedocs.org/en/latest>
-* Solidity example contract <https://www.ethereum.org/greeter>
+* Solidity contract "Greeter" <https://www.ethereum.org/greeter>
