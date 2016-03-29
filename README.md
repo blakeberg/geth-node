@@ -99,6 +99,7 @@ Mining Ether = Securing the network = verify computation while Ether is the curr
 6. see hashrate: `miner.hashrate`
 7. see balance: `web3.eth.getBalance("0x0...")`
 8. stop mining: `miner.stop()` *(if you have balance > 0)*
+9. see your account and mined blocks in blockchain Explorer *(link below)*
 
 **Mining will take 100% cpu and take some while depending on your cpu sha-3 hash performance.**
 
@@ -129,10 +130,11 @@ You can find the solidity file for "Greeter" - a hello world contract under `~/g
 4. type `eth.getCompilers()` and you will get a JSON Response `["Solidity"]`
 
 ##### existing contract
-1. set abi to variable `var abi = <see ABI above>;`
-2. load contract with `var greeter = eth.contract(abi).at("0x0608616212f0356c3d4c7c7b1c317151646164e1");`
-3. type `greeter` for basic informations
-4. run contract with `greeter.greet();`
+1. search for account `0x0608616212f0356c3d4c7c7b1c317151646164e1` and see contract in blockchain explorer *(link below)*
+2. set abi to variable `var abi = <see ABI above>;`
+3. load contract with `var greeter = eth.contract(abi).at("0x0608616212f0356c3d4c7c7b1c317151646164e1");`
+4. type `greeter` for basic informations
+5. run contract with `greeter.greet();`
 
 ##### your own contract
 1. create contract account from javascript `loadScript('/home/geth/greeter.js');`
@@ -143,11 +145,13 @@ You can find the solidity file for "Greeter" - a hello world contract under `~/g
 6. run contract with `greeter2.greet();
 7. you can kill your contract with `greeter.kill.sendTransaction({from:eth.accounts[0]})`
 8. type `eth.getCode(greeter2.address)` *(you get 0 if the transaction for kill finished)*
+9. search for created account and see contract in blockchain explorer *(link below)*
 
 ## Useful Links
 * Ethereum Homepage <http://ethereum.org> 
 * Main Wiki <https://github.com/ethereum/wiki>
 * testnet morden <https://github.com/ethereum/wiki/wiki/Morden>
+* Blockchain Explorer for Testnet <http://testnet.etherscan.io>
 * geth Command Line <https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options>
 * JSON RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>
 * JavaScript Runtime Environment and Management APIs <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console>
