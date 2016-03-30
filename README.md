@@ -146,7 +146,7 @@ You can find the solidity file for "Greeter" - a hello world contract under `~/g
 3. you will get a transaction with the contract creation
 4. if transaction is mined you get the contract address
 5. type `greeter2` for basic informations
-6. run contract with `greeter2.greet()`;
+6. run contract with `greeter2.greet();`
 7. you can kill your contract with `greeter.kill.sendTransaction({from:eth.accounts[0]})`
 8. type `eth.getCode(greeter2.address)` *(you get 0 if the transaction for kill finished)*
 9. search for created account and see contract in blockchain explorer *(link below)*
