@@ -55,6 +55,8 @@ The Ethereum node can be started inside the container within a ssh session or ou
 
 *Instead of `geth` ... and `geth attach` you can run `get console` to get both logging and interactive JavaScript console.*
 
+>If you have an issue with cross origin requests you can allow all domains with parameter `--rpccorsdomain "*"` and if you can't connect to geth node you can allow all adresses with parameter `--rpcaddr "0.0.0.0"`
+
 #### from inside
 
 1. connect with ssh
