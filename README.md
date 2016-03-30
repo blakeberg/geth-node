@@ -41,6 +41,8 @@ Connect with ssh use the port that was just located:
 * you can use sudo @ALL
 * you can also connect via scp of course
 
+> if you us boot2docker you shoud add to your /etc/hosts under Windows or Mac OS X the IP and host name of the boot2docker VM `192.168.99.100 geth` (IP to verify)
+
 ## Ethereum
 Decentralized platform that runs smart contracts or especially applications that run exactly as coded without downtime, censorship, fraud or third party smog. **Applications so called Dapps** need just an Ethereum client node which is connected in Ethereum networks and syncs the Blockchain - the decentralized public ledger and global world computer. 
 
@@ -57,17 +59,19 @@ The Ethereum node can be started inside the container within a ssh session or ou
 
 1. connect with ssh
 2. show help: `geth help`
-2. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "0.0.0.0" &`
+2. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" &`
 3. tail logfile: `tail -f nohup.out`
 3. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.5/linux/go1.5.1"}`
 4. try JavaScript Console type `geth attach` and then `admin.nodeInfo` to get similiar info to request with curl before
 
 #### from outside
 
-1. start client: `docker exec --user geth -d geth nohup geth --testnet --rpc --rpcaddr "0.0.0.0" &`
+1. start client: `docker exec --user geth -d geth nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" &`
 2. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://localhost:8545`
 3. try JavaScript console type `docker exec -i --user geth geth geth attach` to open interactively
 4. type `admin.nodeInfo` to get similiar info to request with curl before
+
+> If you use boot2docker outside means the boot2docker VM in VirtualBox. 
 
 #### Management APIs
 If your client running attach to JavaScript console and you will get an information about these module (Management APIs) with its versions `modules: admin:1.0 db:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 shh:1.0 txpool:1.0 web3:1.0`
