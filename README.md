@@ -61,10 +61,11 @@ The Ethereum node can be started inside the container within a ssh session or ou
 
 1. connect with ssh
 2. show help: `geth help`
-2. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" &`
-3. tail logfile: `tail -f nohup.out`
-3. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.5/linux/go1.5.1"}`
-4. try JavaScript Console type `geth attach` and then `admin.nodeInfo` to get similiar info to request with curl before
+3. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" --ipc&`
+4. tail logfile: `tail -f nohup.out`
+5. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.6/linux/go1.5.1"}`
+6. try JavaScript Console type `geth attach` and then `admin.nodeInfo` to get similiar info to request with curl before
+7. try JSON IPC (Interprocess Communication) API type `echo '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' | nc -U ~/.ethereum/geth.ipc` *(gets the same JSON response)*
 
 #### from outside
 
@@ -75,8 +76,12 @@ The Ethereum node can be started inside the container within a ssh session or ou
 
 > If you use boot2docker outside means the boot2docker VM in VirtualBox. 
 
-#### Management APIs
+#### APIs
 If your client running attach to JavaScript console and you will get an information about these module (Management APIs) with its versions `modules: admin:1.0 db:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 shh:1.0 txpool:1.0 web3:1.0`
+
+**You can and should restrict these modules to RPC API with `--rpcapi "eth,web3"` cause these interface will give everyone access to the API who can access this interface!**
+
+> you can also restrict JSON IPC Api with `--ipcapi "admin,eth"` and disable JSON IPC Api `--ipcdisable`. JSON RPC API won't be enabled if you not add `--rpcapi`
 
 * for managing the node type `admin` 
 * to set/get values to leveldb database type `db` *(same as `web3.db`)*
@@ -162,5 +167,6 @@ You can find the solidity file for "Greeter" - a hello world contract under `~/g
 * JSON RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>
 * JavaScript Runtime Environment and Management APIs <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console>
 * Web3 JavaScript Dapp API <https://github.com/ethereum/wiki/wiki/JavaScript-API>
+* Go Ethereum Management APIs <https://github.com/ethereum/go-ethereum/wiki/Go-ethereum-management-API's>
 * Solidity <https://solidity.readthedocs.org/en/latest>
 * Solidity contract "Greeter" <https://www.ethereum.org/greeter>
