@@ -4,9 +4,11 @@ Based on Official Ubuntu base image (trusty) from **ubuntu:14.04.4**
 
 This Dockerfile stands for a **full ethereum node** where you can connect via **JSON RPC API** and the JavaScript Runtime Environment **JSRE** with interactive Console and Script Mode. Besides this **Solidity** as Contract Compiler is already installed.
 
-> The full Ethereum Blockchain needs actually about 2,6GB in testnet and for mining 1,2GB for each Ethash epoche.
+> The full Ethereum Blockchain needs actually about 3,1 GByte in testnet and for mining 1,2 GByte for each Ethash epoche.
 
-Image size: 418,6 MByte
+- DockerHub Size: 177 MByte
+- DockerHub: <https://hub.docker.com/r/blakeberg/geth-node>
+- Docker Images Size: 418,6 MByte
 
 ## Installed packages
 
