@@ -57,11 +57,13 @@ The Ethereum node can be started inside the container within a ssh session or ou
 
 >If you have an issue with cross origin requests you can allow all domains with parameter `--rpccorsdomain "*"` and if you can't connect to geth node you can allow all adresses with parameter `--rpcaddr "0.0.0.0"`
 
+The url `http://meteor:3000` was set as `--rpccorsdomain` for a dapp running in container "meteor-nodejs". *(link below)*
+
 #### from inside
 
 1. connect with ssh
 2. show help: `geth help`
-3. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" --ipc&`
+3. start ethereum node: `nohup geth --testnet --rpc --rpcaddr "geth" --rpccorsdomain "http://meteor:3000" &`
 4. tail logfile: `tail -f nohup.out`
 5. try JSON RPC API type `curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}' http://geth:8545` and will get a JSON Response `{"id":67,"jsonrpc":"2.0","result":"Geth/v1.3.6/linux/go1.5.1"}`
 6. try JavaScript Console type `geth attach` and then `admin.nodeInfo` to get similiar info to request with curl before
@@ -170,3 +172,4 @@ You can find the solidity file for "Greeter" - a hello world contract under `~/g
 * Go Ethereum Management APIs <https://github.com/ethereum/go-ethereum/wiki/Go-ethereum-management-API's>
 * Solidity <https://solidity.readthedocs.org/en/latest>
 * Solidity contract "Greeter" <https://www.ethereum.org/greeter>
+* Meteor NodeJs Container for Dapps <https://github.com/blakeberg/meteor-nodejs>
