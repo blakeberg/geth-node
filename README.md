@@ -81,7 +81,7 @@ If your client running attach to JavaScript console and you will get an informat
 
 **You can and should restrict these modules to RPC API with `--rpcapi "eth,web3"` cause these interface will give everyone access to the API who can access this interface!**
 
-> you can also restrict JSON IPC Api with `--ipcapi "admin,eth"` and disable JSON IPC Api `--ipcdisable`. JSON RPC API won't be enabled if you not add `--rpcapi`
+> you can also restrict JSON IPC Api with `--ipcapi "admin,eth"` and disable JSON IPC Api `--ipcdisable`. JSON RPC API won't be enabled if you not add `--rpcapi`. By default geth enables all API's over the ipc interface and only the db, eth, net and web3 for Dapps.
 
 * for managing the node type `admin` 
 * to set/get values to leveldb database type `db` *(same as `web3.db`)*
