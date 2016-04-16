@@ -15,6 +15,7 @@ This Dockerfile stands for a **full ethereum node** where you can connect via **
 * openssh-server
 * software-properties-common
 * curl
+* git
 * geth
 * solc
 
