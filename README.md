@@ -6,9 +6,9 @@ This Dockerfile stands for a **full ethereum node** where you can connect via **
 
 > The full Ethereum Blockchain needs actually about 3,1 GByte in testnet and for mining 1,2 GByte for each Ethash epoche.
 
-- Build context: 177 MByte
+- Build context: 182 MByte
 - DockerHub: <https://hub.docker.com/r/blakeberg/geth-node>
-- Image Size: 418,6 MByte
+- Image Size: 434,1 MByte
 
 ## Installed packages
 
